@@ -3,7 +3,7 @@
 	<td>
 		<div class="form-field term-filters-wrap">
 			<div class="form-field term-serial-wrap">
-				<input name="wpadpcbu_component_serial" id="wpadpcbu-component-serial" type="number" value="<?php echo $serial; ?>" min='0' aria-required="true">
+				<input name="wpadpcbu_component_serial" id="wpadpcbu-component-serial" type="number" value="<?php echo (int) $serial; ?>" min='0' aria-required="true">
 				<p><?php _e( 'Input component serial number.', 'wpappsdev-pcbuilder' ); ?></p>
 			</div>
 		</div>
@@ -16,7 +16,7 @@
 			<select name="wpadpcbu_component_filters_group" id="wpadpcbu_component_filters_group" class="select-item">
 				<option value="-1"><?php echo esc_attr__( 'Select Filters Group', 'wpappsdev-pcbuilder' ); ?></option>
 				<?php $cf_groups = get_component_filter(); ?>
-				<?php echo sprintf( '%s', generating_select_options( $cf_groups, 'ID', 'post_title', $selected_val ) ); ?>
+				<?php echo sprintf( '%s', wp_kses( generating_select_options( $cf_groups, 'ID', 'post_title', $selected_val ), wpadpcbu_allowed_html() ) ); ?>
 			</select>
 		</div>
 	</td>
@@ -26,10 +26,10 @@
 		<label for="component-image-id"><?php _e( 'Component Icon', 'wpappsdev-pcbuilder' ); ?></label>
 	</th>
 	<td>
-		<input type="hidden" id="component-image-id" name="component-image-id" value="<?php echo $image_id; ?>">
+		<input type="hidden" id="component-image-id" name="component-image-id" value="<?php echo (int) $image_id; ?>">
 		<div id="component-image-wrapper">
 			<?php if ( $image_id ) { ?>
-				<?php echo wp_get_attachment_image( $image_id, 'thumbnail' ); ?>
+				<?php echo wp_kses( wp_get_attachment_image( $image_id, 'thumbnail' ), wpadpcbu_allowed_html() ); ?>
 			<?php } ?>
 		</div>
 		<p>

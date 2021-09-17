@@ -5,7 +5,7 @@
 			<label for="wpadpcbu_component"><?php echo esc_attr__( 'PC Component', 'wpappsdev-pcbuilder' ); ?></label>
 			<select id="wpadpcbu_component" name="pcbu_settings[pcbucomp]" class="select short">
 				<option value="-1"><?php echo esc_attr__( 'Select Component', 'wpappsdev-pcbuilder' ); ?></option>
-				<?php echo generating_select_options( get_tax_terms_list( 'pcbucomp' ), 'term_id', 'name', $pcbu_settings['pcbucomp'] ); ?>
+				<?php echo wp_kses( generating_select_options( get_tax_terms_list( 'pcbucomp' ), 'term_id', 'name', $pcbu_settings['pcbucomp'] ), wpadpcbu_allowed_html() ); ?>
 			</select>
 		</p>
 		<div id="wpadpcbu_filters_div">
@@ -13,13 +13,10 @@
 			if ( is_array( $filter_items ) ) {
 				foreach ( $filter_items as $item ) {
 					$taxonomy = 'cf-' . $item['filter_slug'];
-					echo "<p class='form-field wpadpcbu_{$taxonomy}_field'>";
-					echo "<label for='wpadpcbu_{$taxonomy}'>{$item['filter_name']}</label>";
-					echo "<select id=\"wpadpcbu_{$taxonomy}\" name=\"pcbu_settings[filters][{$taxonomy}]\" class=\"select short\">";
-					echo "<option value=\"-1\">Select {$item['filter_name']}</option>";
-					echo generating_select_options( get_tax_terms_list( $taxonomy ), 'term_id', 'name', $filters[$taxonomy] );
-					echo '</select>';
-					echo '</p>';
+					$name     = $item['filter_name'];
+					$options  = generating_select_options( get_tax_terms_list( $taxonomy ), 'term_id', 'name', $filters[$taxonomy] );
+
+					echo sprintf( '<p class="form-field wpadpcbu_%1$s_field"><label for="wpadpcbu_%1$s"">%2$s</label><select id="wpadpcbu_%1$s" name="pcbu_settings[filters][%1$s]" class="select short"><option value="-1">Select %2$s</option>%3$s</select></p>', esc_attr( $taxonomy ), esc_attr( $name ), wp_kses( $options, wpadpcbu_allowed_html() ) );
 				}
 			}
 		?>
@@ -29,7 +26,7 @@
 			<label for="wpadpcbu_component"><?php echo esc_attr__( 'PC Component', 'wpappsdev-pcbuilder' ); ?></label>
 			<select id="wpadpcbu_component" name="pcbu_settings[pcbucomp]" class="select short">
 				<option value="-1"><?php echo esc_attr__( 'Select Component', 'wpappsdev-pcbuilder' ); ?></option>
-				<?php echo generating_select_options( get_tax_terms_list( 'pcbucomp' ), 'term_id', 'name', '' ); ?>
+				<?php echo wp_kses( generating_select_options( get_tax_terms_list( 'pcbucomp' ), 'term_id', 'name', '' ), wpadpcbu_allowed_html() ); ?>
 			</select>
 		</p>
 		<div id="wpadpcbu_filters_div"></div>

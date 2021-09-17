@@ -29,7 +29,7 @@
 
 							<?php } elseif ( 'savepc-actions' === $column_id ) { ?>
 								<?php echo '<a href="' . esc_url( wc_get_endpoint_url( 'view-savedpc', $saved_pc->id ) ) . '" class="pc-builder-button" title="' . esc_html__( 'View', 'wpappsdev-pcbuilder' ) . '"><i class="dashicons dashicons-visibility"></i></a>'; ?>
-								<?php echo '<a class="wpadpcbu-remove-savedpc pc-builder-button" data-id = "' . $saved_pc->id . '" href="#" title="' . esc_html__( 'Remove', 'wpappsdev-pcbuilder' ) . '"><i class="dashicons dashicons-trash"></i></a>'; ?>
+								<?php echo '<a class="wpadpcbu-remove-savedpc pc-builder-button" data-id = "' . (int) $saved_pc->id . '" href="#" title="' . esc_html__( 'Remove', 'wpappsdev-pcbuilder' ) . '"><i class="dashicons dashicons-trash"></i></a>'; ?>
 							<?php } ?>
 						</td>
 					<?php } ?>

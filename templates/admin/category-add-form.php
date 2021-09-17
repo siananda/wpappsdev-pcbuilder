@@ -9,7 +9,7 @@
 	<select name="wpadpcbu_component_filters_group" id="wpadpcbu-component-filters-group" class="select-item">
 		<option value="-1"><?php esc_html_e( 'Select Filters Group', 'wpappsdev-pcbuilder' ); ?></option>
 		<?php $cf_groups = get_component_filter(); ?>
-		<?php echo sprintf( '%s', generating_select_options( $cf_groups, 'ID', 'post_title', '' ) ); ?>
+		<?php echo sprintf( '%s', wp_kses( generating_select_options( $cf_groups, 'ID', 'post_title', '' ), wpadpcbu_allowed_html() ) ); ?>
 	</select>
 </div>
 

@@ -46,6 +46,10 @@ function wpadpcbu_allowed_html() {
 			'sizes'   => [],
 			'loading' => [],
 		],
+		'option' => [
+			'value'    => [],
+			'selected' => [],
+		],
 	];
 
 	return $allowed_html;

@@ -77,7 +77,7 @@ class WpadMetaBox  {
 				self::meta_box_find_field_type( 'file', $this->fields )
 			) ) ):
 				wp_enqueue_script( 'meta_box', plugin_dir_url( __FILE__ ) . '/assets/js/scripts.js', $deps );
-				wp_enqueue_script( 'jquery-ui', plugin_dir_url( __FILE__ ) . '/assets/js/jquery-ui.min.js', $deps );
+				wp_enqueue_script( 'jquery-ui-core' );
 			endif;
 
 			// css
