@@ -3,7 +3,7 @@
 	<div id="component-product-<?php echo esc_attr( $product->get_id() ); ?>" class="component-product">
 		<div class="product-img">
 			<a target="_blank" href="<?php echo esc_url( get_permalink( $product->get_id() ) ); ?>">
-				<?php echo get_the_post_thumbnail( $product->get_id(), [150, 150] ); ?>
+				<?php echo wp_kses( get_the_post_thumbnail( $product->get_id(), [150, 150] ), wpadpcbu_allowed_html() ); ?>
 			</a>
 		</div>
 		<div class="product-info">

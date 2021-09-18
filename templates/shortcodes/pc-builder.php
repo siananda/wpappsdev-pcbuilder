@@ -61,7 +61,7 @@
 										<?php if ( isset( $items[ $key ] ) ) {?>
 											<div class="product-image">
 												<a target="_blank" href="<?php echo esc_url( get_permalink( $items[ $key ]['id'] ) ); ?>">
-													<?php echo get_the_post_thumbnail( $items[ $key ]['id'], [80, 80] ); ?>
+													<?php echo wp_kses( get_the_post_thumbnail( $items[ $key ]['id'], [80, 80] ), wpadpcbu_allowed_html() ); ?>
 												</a>
 											</div>
 										<?php } ?>
